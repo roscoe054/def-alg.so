@@ -3,12 +3,4 @@ alg.so
 
 > ALG.SO 是一个算法和程序的接口商店，能给提供者带来利益，给开发者带来价值，并提供对算法和程序进行横向比较的平台。
 
-说来说去这个项目还是稍微有点成功的商业模式可以借鉴。我们决定下一步做这个东西。
-
-不了解请看 http://www.36kr.com/p/214568.html
-
-但我们不会照搬这种模式，一些方法论和设计理念还是要与众不同，让WEB程序员不再重复造轮子应该是我们最终想达到的目标。
-
-一个可以借鉴的 API 商店的例子，内容形式大体相似，但做法不同 http://www.juhe.cn 。
-
-另外 yinwang0 大牛的 https://sourcegraph.com/ 也是真强。
+设计文档见：https://github.com/zhuple/def-alg.so/wiki/ALG.SO-DOC
