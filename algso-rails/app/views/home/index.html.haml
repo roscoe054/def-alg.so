@@ -1,2 +1,39 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+#homep.jumbotron
+  .container#homep-title
+    %h1
+      ALG.SO 奥搜网
+    %h2 
+      一个算法与应用的自由市场，现在就与深奥的思想快速对接
+    %h2#homep-title-ad
+      10.24 &nbsp;&nbsp;Nice people safe whole life
+      %img{:src=>"/assets/1f602.png",:style=>"width:22px; vertical-align:text-top"} 
+
+#homep-market.jumbotron
+  .container
+    .col-lg-4
+      %h4 
+        %span.glyphicon.glyphicon-barcode
+        算法交易
+      %p
+        在这里既可以方便使用算法的工程师，也可以回馈编写算法的程序员，自由交易的平台等你加入。
+    .col-lg-4
+      %h4 
+        %span.glyphicon.glyphicon-search
+        研究社区
+      %p
+        我们为机器学习、数据挖掘等智能算法提供了横向比较平台，可实现共同协作，从而推进研究进程。
+    .col-lg-4
+      %h4
+        %span.glyphicon.glyphicon-tree-deciduous
+        应用托管
+      %p
+        ALG.SO 会为你的服务带来流量，同时也可以为你的算法提供服务托管，更省心、更省力、性能更好。
+
+/ 用点angular.js
+/ %div{'ng-app'=>""}
+/   %p Input somthing in the input box:
+/   %p 
+/     Name:
+/     %input{:type=>"text",'ng-model'=>"name",:value=>"John"}
+/   %p{'ng-bind'=>"name"}
+
