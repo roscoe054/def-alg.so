@@ -1,0 +1,39 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#homep{
+	background-color: rgba(0, 147, 206, 0.9);
+	color: white;
+}
+
+#homep-title h2{
+	margin-top:6px;
+	font-size: 24px;
+	color: rgba(255,255,255,0.7)
+}
+
+#homep-title h1,h2{
+	font-weight: 100;
+	font-size: 50px;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+	text-align: center;
+	line-height: 1.5;
+}
+
+#homep-title-ad{
+	font-size: 20px !important;
+	color: white !important;
+	margin-top:50px !important; 
+}
+
+#homep-market{
+	background-color: #f9f9f9;
+	margin-top:-30px;
+	border-bottom: 1px solid #eee;
+}
+
+#homep-market p{
+	margin-top:20px;
+	font-size: 15px;
+}
