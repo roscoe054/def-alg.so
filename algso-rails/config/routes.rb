@@ -8,6 +8,7 @@ AlgsoRails::Application.routes.draw do
   root 'home#index'
   match '/login' ,to: 'user#login' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
+  match '/alg' ,to: 'alg_info#index' ,via:'get'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
