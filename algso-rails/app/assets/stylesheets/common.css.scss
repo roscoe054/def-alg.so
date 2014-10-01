@@ -1,0 +1,93 @@
+$bgc : #09c;
+$bordergrey: #ccc;
+$hintgrey: #999;
+@mixin inb {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+@mixin box_sizing {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* common class BEGIN */
+.fr{float:right}
+.fl{float:left;}
+.hidden{display:hidden;}
+/* common class END */
+
+/* login page style BEGIN */
+.login {
+	a{
+		color:$bgc;
+		text-decoration:none;
+		cursor:pointer;
+	}
+	a:hover{
+		text-decoration:none;
+	}
+
+	h1{color: $bgc;}
+
+	form{
+		width: 400px;
+		margin: 0 auto;
+		text-align: center;
+		
+		.input-wrap{
+			position: relative;
+			margin: 20px 0 0;
+			padding: 10px;
+			border: 1px $bordergrey solid;
+
+			input{
+				width: 100%;
+				border:0 none;
+				outline: none;
+				font-size: 16px;
+			}
+
+			.form-required{
+				position: absolute;
+				top: 50%;
+				right: 15px;
+				margin: -5px 0 0;
+				line-height: 18px;
+				font-size: 16px;
+				color: $hintgrey;
+			}
+		}
+		.fplink{
+			display: block;
+			margin: 10px 0 0;
+			text-align: right;
+		}
+		.bottom-row{
+			margin: 20px 0 0;
+			text-align: left;
+			
+			.field-wrap{
+				@include inb;
+				line-height: 50px;
+			}
+
+			input[type="submit"]{
+				float: right;
+				width: 50%;
+				line-height: 30px;
+				background-color: #FFF;
+				text-decoration: none;
+				outline: none;
+				border: 1px $bordergrey solid;
+				padding: 10px 0;
+			}
+			input[type="submit"].active{
+				background-color: #09c;
+				color: #fff;
+			}
+		}
+	}
+}
+/* login page style END */

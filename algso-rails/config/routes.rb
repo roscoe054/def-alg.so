@@ -5,10 +5,15 @@ AlgsoRails::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  
+  resources :user
   root 'home#index'
   match '/login' ,to: 'user#login' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
   match '/alg' ,to: 'alg_info#index' ,via:'get'
+  
+  # root to: 'static_pages#home'
+  # match '/signup', to: 'users#new',via: 'get'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
