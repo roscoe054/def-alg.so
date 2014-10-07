@@ -18,6 +18,15 @@ $hintgrey: #999;
 .hidden{display:hidden;}
 /* common class END */
 
+/* common component BEGIN */
+.alert-error{
+	text-align:center;
+	color: #c30;
+	background-color: #fdf;
+}
+/* common component END */
+
+
 /* login page style BEGIN */
 .login {
 	a{
@@ -30,6 +39,8 @@ $hintgrey: #999;
 	}
 
 	h1{color: $bgc;}
+	
+	.link-hint{color:$bordergrey}
 
 	form{
 		width: 400px;
@@ -38,7 +49,7 @@ $hintgrey: #999;
 		
 		.input-wrap{
 			position: relative;
-			margin: 20px 0 0;
+			margin: 15px 0 0;
 			padding: 10px;
 			border: 1px $bordergrey solid;
 
@@ -74,8 +85,7 @@ $hintgrey: #999;
 			}
 
 			input[type="submit"]{
-				float: right;
-				width: 50%;
+				width: 100%;
 				line-height: 30px;
 				background-color: #FFF;
 				text-decoration: none;
@@ -83,11 +93,16 @@ $hintgrey: #999;
 				border: 1px $bordergrey solid;
 				padding: 10px 0;
 			}
+			input[type="submit"].login-bt{
+				float: right;
+				width: 60%;
+			}
 			input[type="submit"].active{
 				background-color: #09c;
 				color: #fff;
 			}
 		}
+		.form-hint{text-align:left;color:$hintgrey}
 	}
 }
 /* login page style END */
