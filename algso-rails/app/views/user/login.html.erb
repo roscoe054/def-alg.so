@@ -5,7 +5,7 @@
 			还没有帐号？<a href="javascript:void(0)" id="link_to_signup">点此注册</a>
 		</div>
 		<div class="input-wrap">
-			<input class="form-item" type="text" placeholder="邮箱或者用户名" name="session[email]">
+			<input class="form-item" type="text" placeholder="注册邮箱" name="session[email]" >
 			<span class="form-required">*</span>
 		</div>
 		<div class="form-hint hidden"><small>请输入正确邮箱格式</small></div>
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 	//moduleLogin
 	var moduleLogin = (function(){
-		var validAll = true
+		var validAll = false
 		var validEmail = false
 		$("input[name='session[email]']").keyup(function() {
 			var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/
@@ -162,8 +162,7 @@ $(document).ready(function() {
 		})
 
 		$(".login-form .form-item").keyup(function() {
-			// validAll = validEmail && validPassword
-			console.log(validAll, validEmail, validPassword)
+			validAll = validEmail && validPassword
 			if (validAll) {
 				$("#login_submit").addClass("active")
 				$("#login_submit").attr("disabled", false)

@@ -12,6 +12,9 @@ AlgsoRails::Application.routes.draw do
   match '/login' ,to: 'user#login' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
   match '/alg' ,to: 'alg_info#index' ,via:'get'
+  match '/signup', to: 'user#login',via: 'get'
+  match '/signin', to: 'sessions#new',via: 'get'
+  match '/signout', to: 'sessions#destroy',via: 'delete'
   
   # root to: 'static_pages#home'
   # match '/signup', to: 'users#new',via: 'get'
