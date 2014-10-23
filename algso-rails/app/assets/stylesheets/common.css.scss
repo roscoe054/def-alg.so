@@ -1,3 +1,16 @@
+/* Reset BEGIN */
+ol, ul, li, p, h1, h2, h3, h4{ margin:0; padding:0;}
+ol, ul { list-style: none; }
+ 
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong { font-weight: bold; }
+ 
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+ 
+/* Reset END */
+
 $bgc : #09c;
 $bordergrey: #ccc;
 $hintgrey: #999;
@@ -5,6 +18,14 @@ $hintgrey: #999;
 	display:inline-block;
 	*display:inline;
 	*zoom:1;
+}
+@mixin clearfixAfter{
+	content: "."; 
+	display: block; 
+	clear: both; 
+	visibility: hidden; 
+	line-height: 0; 
+	height: 0; 
 }
 @mixin box_sizing {
 	-moz-box-sizing: border-box;
@@ -23,6 +44,28 @@ $hintgrey: #999;
 	text-align:center;
 	color: #c30;
 	background-color: #fdf;
+}
+.m-mainbody{
+	width:1170px;
+	padding:15px;
+	margin:0 auto;
+
+}
+.m-mainbody:after { 
+	@include clearfixAfter;
+}
+.m-left-column,.m-right-column{
+	@include inb;
+	box-sizing:border-box;
+	vertical-align:top;
+}
+.m-left-column{
+	width:20%;
+	float:left;
+}
+.m-right-column{
+	width:80%;
+	padding-left:20px;
 }
 /* common component END */
 
@@ -106,3 +149,67 @@ $hintgrey: #999;
 	}
 }
 /* login page style END */
+
+/* persenal info page Begin*/
+.personal-info {
+	img{
+		width:100%;
+	}
+	strong{
+		font-size: 22px;
+	}
+	span{
+		font-size: 16px;
+	}
+}
+/* persenal info page End*/
+
+/* persenal info page Begin*/
+.personal-alg {
+	h3{
+		margin: 0;
+		padding:5px;
+		font-size: 20px;
+		color: #fff;
+		background-color: #3ae;
+		border-left:10px #09c solid;
+	}
+	.alg-list{
+		border:1px #ccc solid;
+		border-radius: 2px;
+		padding:5px;
+		margin: 0 0 15px;
+
+		li{
+			position: relative;
+			padding:5px;
+			margin: 5px;
+			border: 1px #ccc solid;
+			border-radius: 2px;
+			h4{
+				@include inb;
+				margin: 0 5px 0 0;
+
+				a:hover{
+					text-decoration: none;
+				}
+			}
+
+			.call-times{
+				position:absolute;
+				right:5px;
+				top:7px;
+				bottom:7px;
+				height: 36px;
+				line-height: 36px;
+				padding: 0 5px;
+				background-color: #333;
+				color: #fff;
+				border-radius:2px;
+				font-size: 18px;
+				text-align: center;
+			}
+		}
+	}
+}
+/* persenal info page End*/

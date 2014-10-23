@@ -14,7 +14,6 @@ class UserController < ApplicationController
 		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome to the Sample App!"
-			cookies.permanent[:newtest_remember_token] = "remember_token"
 			redirect_to @user
 		else
 			render 'new'

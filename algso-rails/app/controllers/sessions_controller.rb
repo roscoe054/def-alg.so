@@ -1,5 +1,6 @@
 # coding: utf-8
 class SessionsController < ApplicationController
+	skip_before_filter :verify_authenticity_token, :only => [:create, :destroy]
 	def new
 	end
 	def create
