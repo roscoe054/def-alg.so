@@ -1,5 +1,6 @@
 AlgsoRails::Application.routes.draw do
 
+  get "alg_info/create"
   # get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,6 +13,9 @@ AlgsoRails::Application.routes.draw do
   match '/login' ,to: 'user#login' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
   match '/alg' ,to: 'alg_info#index' ,via:'get'
+  match '/search' ,to: 'search#index' ,via:'get'
+  match '/create' ,to: 'alg_info#create' ,via:'get'
+
   match '/signup', to: 'user#login',via: 'get'
   match '/signin', to: 'sessions#new',via: 'get'
   match '/signout', to: 'sessions#destroy',via: 'delete'
