@@ -16,7 +16,7 @@ class UserController < ApplicationController
 			sign_in @user
 			flash[:success] = "Welcome to the Sample App!"
 			cookies.permanent[:newtest_remember_token] = "remember_token"
-			redirect_to @user
+			redirect_to info_path
 		else
 			render 'new'
 		end

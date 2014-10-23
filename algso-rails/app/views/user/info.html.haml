@@ -8,7 +8,7 @@
   .panel.panel-info 
     .panel-heading
       购买的算法【2】
-      %button.btn.btn-info 购买一个算法
+      %a.btn.btn-info{:href=>"/search"} 购买一个算法
     .panel-body 
       .panel-group#accordion{:role=>"tablist",'aria-multiselectable'=>"true"}
         .panel.panel-default
@@ -29,7 +29,7 @@
   .panel.panel-success 
     .panel-heading 
       发布的算法【1】
-      %button.btn.btn-success 发布一个算法
+      %a.btn.btn-success{:href=>"/create"} 发布一个算法
     .panel-body 
       .panel-group#accordion-1{:role=>"tablist",'aria-multiselectable'=>"true"}
         .panel.panel-default

@@ -13,7 +13,8 @@
       <div class="container">
         <a class="navbar-brand" href="/"><img alt="Brand" src="/favicon.ico" style="vertical-align: text-top; width:20px;"> ALG.SO α</a>
         <ul class="nav navbar-nav">
-          <li class="<%= 'active' if current_page?(alg_path) %>"><a href="/alg">算法页</a></li>
+          <li class="<%= 'active' if current_page?(search_path) %>"><a href="/search">探索</a></li>
+          <li class="<%= 'active' if current_page?(create_path) %>"><a href="/create">发布我的算法</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
