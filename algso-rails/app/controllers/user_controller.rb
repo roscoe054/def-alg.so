@@ -1,12 +1,13 @@
 class UserController < ApplicationController
 	def info
+		@user = current_user
 	end
 
 	def login
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = current_user
 	end
 
 	def create
@@ -14,6 +15,7 @@ class UserController < ApplicationController
 		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome to the Sample App!"
+			cookies.permanent[:newtest_remember_token] = "remember_token"
 			redirect_to @user
 		else
 			render 'new'

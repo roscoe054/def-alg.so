@@ -1,2 +1,42 @@
-%h1 AlgInfo#index
-%p Find me in app/views/alg_info/index.html.haml
+.container
+  %h3.page-header 
+    %a{:href=>"#"} Vixuowis
+    \/
+    naive-bayes
+    %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 文本处理
+    %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 机器学习
+    %br
+    %small 朴素贝叶斯分类器，可实现文本分类，绝对棒棒哒。
+    %a.glyphicon.glyphicon-pencil{:style=>"font-size:16px; margin-left:10px;",:href=>"#"}
+  
+  .row
+    .col-lg-8
+      %h4 
+        试用地址: 
+        %a{:href=>"#"} http://vixuowis.me/naive-bayes
+      %h4 
+        资费标准: 
+        1 RMB / 百次调用
+    .col-lg-4
+      .panel.panel-info 
+        .panel-heading 说明文档
+        .panel-body 
+          %p 本文档意在简要说明算法何种用途，可达到何种要求。
+      .panel.panel-success 
+        .panel-heading 测试面板
+        .panel-body
+          %p 功能测试
+          %p 性能测试
+          .alert.alert-warning.alert-dismissible{:role=>"alert"}
+            %button.close{:type=>"button",'data-dismiss'=>"alert"}
+              %span{'aria-hidden'=>"true"} &times;
+            %strong 好消息！
+            现在可以通过为该算法写测试用例直接获得 
+            %strong 10 RMB 
+            的折扣！
+            %a{:href=>"#"} 去看看
+
+/         <div class="alert alert-warning alert-dismissible" role="alert">
+/   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+/   <strong>Warning!</strong> Better check yourself, you're not looking too good.
+/ </div>

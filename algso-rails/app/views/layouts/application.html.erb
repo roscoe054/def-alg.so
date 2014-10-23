@@ -1,53 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>奥搜网 α | 算法与应用的自由市场，与深奥的思想快速对接</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <!-- <link rel="SHORTCUT ICON" href="assets/favicon.ico"> -->
-  </head>
+	<head>
+	<title>奥搜网 α | 算法与应用的自由市场，与深奥的思想快速对接</title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+	<!-- <link rel="SHORTCUT ICON" href="assets/favicon.ico"> -->
+	</head>
 
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-            <a class="navbar-brand" href="/">
-                <img alt="Brand" src="/favicon.ico" style="vertical-align: text-top; width:20px;"> ALG.SO α
-            </a>
-            <ul class="nav navbar-nav">
-                <li class="<%= 'active' if current_page?(info_path) %>">
-                    <a href="/alg">算法库</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <% if signed_in? %>
-                <li class="<%= 'active' if current_page?(info_path) %>">
-                    <a href="/info">个人中心</a>
-                </li>
-                <li class="<%= 'active' if current_page?(login_path) %>">
-                    <a href="/login">登录</a>
-                </li>
-                <% else %>
-                <li class="<%= 'active' if current_page?(login_path) %>">
-                    <a href="/info"><%= current_user.name %></a>
-                </li>
-                <li>
-                    <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-                <% end %>
-            </ul>
-            </div>
-    </nav>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <a class="navbar-brand" href="/"><img alt="Brand" src="/favicon.ico" style="vertical-align: text-top; width:20px;"> ALG.SO α</a>
+        <ul class="nav navbar-nav">
+          <li class="<%= 'active' if current_page?(alg_path) %>"><a href="/alg">算法页</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <%if !current_user.nil?%>
+            <%= render partial: "layouts/user" %>
+          <%else%>
+            <li class="<%= 'active' if current_page?(login_path) %>"><a href="/login">登录</a></li>
+          <%end%>
+        </ul>
+      </div>
+      
+		</nav>
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
     <%= yield %>
 
     <footer class="footer">
-        <div class="container">
-            <p>© 2014 <a href="http://www.zhuple.com" target="_blank">竹简 Zhuple</a>. <a href="https://github.com/zhuple/def-alg.so" target="_blank">Github</a>.</p>
-        </div>
+      <div class="container">
+          <p>© 2014 <a href="http://www.zhuple.com" target="_blank">竹简 Zhuple</a>. <a href="https://github.com/zhuple/def-alg.so" target="_blank">Github</a>.</p>
+      </div>
     </footer>
-  </body>
+	</body>
 
 </html>

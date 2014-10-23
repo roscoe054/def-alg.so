@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023052353) do
-
-  create_table "algs", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "doc"
-    t.string   "status"
-    t.string   "type"
-    t.string   "version"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141002124151) do
 
   create_table "users", force: true do |t|
     t.string   "name"
