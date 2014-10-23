@@ -1,0 +1,2 @@
+module AlgsHelper
+end
