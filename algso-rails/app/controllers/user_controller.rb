@@ -1,5 +1,10 @@
 class UserController < ApplicationController
+	skip_before_filter :verify_authenticity_token, :only => [:create]
+
 	def info
+		if current_user.nil?
+			redirect_to root_path
+		end
 		@user = current_user
 	end
 
@@ -11,12 +16,11 @@ class UserController < ApplicationController
 	end
 
 	def create
-		@user = User.new(user_params)
-		if @user.save
-			sign_in @user
-			flash[:success] = "Welcome to the Sample App!"
-			cookies.permanent[:newtest_remember_token] = "remember_token"
-			redirect_to info_path
+		user = User.new(user_params)
+		if user.save
+			sign_in user
+			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
+			redirect_to root_path
 		else
 			render 'new'
 		end
