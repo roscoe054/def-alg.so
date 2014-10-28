@@ -1,6 +1,5 @@
-<% provide(:title, "Sign in") %>
 <div class="login">
-	<form class="login-form " accept-charset="UTF-8" action="/sessions" method="post">
+	<form class="login-form " accept-charset="UTF-8" action="/sessions" method="post" ms-controller="loginform" ms-submit="validSubmit">
 		<h1>登录</h1>
 		<div class="link-hint">
 			还没有帐号？<a href="javascript:void(0)" id="link_to_signup">点此注册</a>
@@ -19,10 +18,10 @@
 		<a class="fplink">忘记密码了？</a>
 		<div class="bottom-row">
 			<div class="field-wrap">
-				<input type="checkbox" id="logincheck"/> 
-				<label for="logincheck">记住密码</label>  
+				<input type="checkbox" id="logincheck" ms-duplex-radio="rememberPwd" name="session[remember]"/> 
+				<label for="logincheck">记住我</label>  
 			</div>
-			<input id="login_submit" class="login-bt" type="submit" value="登录" name="commit" disabled="true">
+			<input id="login_submit" class="login-bt" type="submit"  value="登录" name="commit" ms-click="validLogin" disabled="true">
 		</div>
 	</form>
 
@@ -62,6 +61,15 @@
 </div>
 
 <script type="text/javascript">
+var model = avalon.define({
+	$id: "loginform",
+	rememberPwd: false,
+    validLogin : function(){
+    	if(model.rememberPwd){
+
+    	}
+    }
+});
 $(document).ready(function() {
 	window.history.replaceState("","","login")
 	

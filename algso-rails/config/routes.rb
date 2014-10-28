@@ -10,7 +10,7 @@ AlgsoRails::Application.routes.draw do
   resources :user
   resources :sessions, only: [:new, :create, :destroy]
   root 'home#index'
-  match '/login' ,to: 'user#login' ,via:'get'
+  match '/login' ,to: 'sessions#new' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
   match '/alg' ,to: 'alg_info#index' ,via:'get'
   match '/search' ,to: 'search#index' ,via:'get'

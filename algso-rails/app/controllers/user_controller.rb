@@ -18,11 +18,11 @@ class UserController < ApplicationController
 	def create
 		user = User.new(user_params)
 		if user.save
-			sign_in user
+			save_in user
 			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
 			redirect_to root_path
 		else
-			render 'new'
+			redirect_to root_path
 		end
 	end
 	private

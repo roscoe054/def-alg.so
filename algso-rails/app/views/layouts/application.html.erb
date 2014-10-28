@@ -3,7 +3,8 @@
 	<head>
 	<title>奥搜网 α | 算法与应用的自由市场，与深奥的思想快速对接</title>
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "avalon", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
 	<!-- <link rel="SHORTCUT ICON" href="assets/favicon.ico"> -->
 	</head>
@@ -21,7 +22,7 @@
           <%if !current_user.nil?%>
             <%= render partial: "layouts/user" %>
           <%else%>
-            <li class="<%= 'active' if current_page?(login_path) %>"><a href="/login">登录</a></li>
+            <li class="<%= 'active' if current_page?(signin_path) || current_page?(login_path) %>"><a href="/signin">登录</a></li>
           <%end%>
         </ul>
       </div>
