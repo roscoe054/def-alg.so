@@ -81,5 +81,16 @@
     }
     .form-hint{text-align:left;color:$hintgrey}
   }
+  .link-github-wrap{
+    margin: 20px 0;
+    text-align: center;
+
+    a{
+      padding: 10px 20px;
+      background-color: #999;
+      color: #fff;
+    }
+    
+  }
 }
 /* login page style END */

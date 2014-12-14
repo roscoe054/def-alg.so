@@ -40,6 +40,7 @@ gem 'will_paginate', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem "bcrypt-ruby"
 
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -48,3 +49,6 @@ gem "bcrypt-ruby"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "json",        "1.8.1"
+gem 'rest-client', '~> 1.6.3'
