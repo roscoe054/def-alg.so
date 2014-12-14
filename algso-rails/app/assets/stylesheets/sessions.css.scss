@@ -82,15 +82,18 @@
     .form-hint{text-align:left;color:$hintgrey}
   }
   .link-github-wrap{
-    margin: 20px 0;
+    margin: 100px 0 0;
     text-align: center;
-
     a{
-      padding: 10px 20px;
-      background-color: #999;
-      color: #fff;
-    }
-    
+      img{
+        width: 60px;
+        height: 60px;
+      }
+
+      :hover{
+        background-color: #fff;
+      }
+    }    
   }
 }
 /* login page style END */
