@@ -1,3 +1,31 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "common.css.scss";
+
+/* personal page style BEGIN */
+.main-body{
+  margin: 20px auto;
+  .info-wrap {
+    width: 240px;
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 20px;
+    border: 1px #ddd solid;
+    border-radius: 5px;
+    .avatar{
+      width: 100%;
+      border-radius: 3px;
+    }
+    .page-header{
+      margin: 10px 0;
+      border: 0 none;
+    }
+  }
+  .panel-list{
+    float: left;
+    width: 880px;
+  }
+}
+

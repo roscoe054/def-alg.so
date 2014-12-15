@@ -23,6 +23,7 @@ class UserController < ApplicationController
 			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
 			redirect_to root_path
 		else
+			flash[:error] = "注册失败，请检查信息是否有效"
 			redirect_to root_path
 		end
 	end

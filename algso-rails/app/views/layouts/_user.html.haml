@@ -1,7 +1,7 @@
 %p.text-muted.pull-right{:style=>"text-align:right;margin-top:16px; margin-right:15px;"}
   - if !current_user.nil?
     你好,
-    %a{:href => "/info"}
+    %a{:href => "/user/#{current_user.id}","data-no-turbolink"=>true}
       = current_user.name
     %a.glyphicon.glyphicon-log-out{:href => "/signout", 'data-method'=>"delete", :style=>"cursor:pointer;margin-left:5px;"}
   - else
