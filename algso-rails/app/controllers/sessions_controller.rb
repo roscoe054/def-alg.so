@@ -44,6 +44,7 @@ class SessionsController < ApplicationController
 			else
 				user = User.new(:name => auth_result['login'], 
 								:email => auth_result['email'],
+								:avatar => auth_result['avatar_url'],
 								:password => CLIENT_SECRET,
 								:password_confirmation => CLIENT_SECRET)
 				if user.save

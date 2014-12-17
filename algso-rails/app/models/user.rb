@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+	include Gravtastic
+  	gravtastic :secure => true,
+               :filetype => :gif,
+               :rating => 'G',
+               :d => 'mm'
+
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 
