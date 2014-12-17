@@ -1,6 +1,6 @@
 .container.main-body(ms-controller="userinfo")
   .info-wrap
-    %img.avatar{:src => "/assets/default_avatar.jpg"}
+    %img.avatar{:src => @user.avatar}
     %h3.page-header
       = @user.name
       <br/>

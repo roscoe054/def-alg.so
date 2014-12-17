@@ -52,3 +52,4 @@ gem "bcrypt-ruby"
 
 gem "json",        "1.8.1"
 gem 'rest-client', '~> 1.6.3'
+gem 'gravtastic'
