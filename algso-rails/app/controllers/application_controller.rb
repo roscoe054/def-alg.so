@@ -1,3 +1,7 @@
+require 'mongo'
+require 'date'
+include Mongo
+
 # coding: utf-8
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
