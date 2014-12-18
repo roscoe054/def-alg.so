@@ -14,6 +14,9 @@ class UserController < ApplicationController
 
 	def show
 		@user = current_user
+		if current_user.avatar.nil?
+			current_user.avatar = current_user.gravatar_url(:s => 200)
+		end
 	end
 
 	def create
