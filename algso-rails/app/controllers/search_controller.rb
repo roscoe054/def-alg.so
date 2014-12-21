@@ -2,7 +2,8 @@
 class SearchController < ApplicationController
   def index
   	# connection
-	coll = MongoClient.new("localhost", 27017).db("algso_dev")["alg_info"]
-	
+	connect_mongodb()
+	@algs_list = []
+	@algs_list = @algs.find()
   end
 end
