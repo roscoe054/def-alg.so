@@ -1,3 +1,14 @@
 .container
-  %h1 Search#index
-  %p Find me in app/views/search/index.html.haml
+  %h3.page-header
+    .row
+      .col-lg-2 搜索算法
+      .col-lg-4
+        %form{:method=>"get"}
+          .input-group
+            %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"分词"}
+            %span.input-group-btn
+              %button.btn.btn-primary{:type=>"submit"} 搜一下
+      %a{:href=>"#",:style=>"font-size:14px;"} 高级搜索
+
+  - @algs_list.each do |alg|
+    = render partial: 'search/alg_search', locals: {alg:alg}
