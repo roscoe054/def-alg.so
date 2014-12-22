@@ -1,2 +1,4 @@
-%p
-  = alg
+%a.alg-name{:href=>"/alg/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
+
+%p.alg-intro
+  = alg['short_intro'] || "#{alg['name']||alg['bundle_name']} 是个好算法，用过的都说好。"
