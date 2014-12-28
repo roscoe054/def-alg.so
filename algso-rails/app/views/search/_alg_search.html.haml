@@ -1,4 +1,7 @@
-%a.alg-name{:href=>"/alg/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
+%a.alg-name{:href=>"/#{current_user.name}/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
 
 %p.alg-intro
-  = alg['desc'] || "#{alg['name']||alg['bundle_name']} 是个好算法，用过的都说好。"
+  - if alg['desc'] and !alg['desc'].blank?
+    = alg['desc']
+  - else
+    = "#{alg['name']||alg['bundle_name']} 是个好算法，用过的都说好。"

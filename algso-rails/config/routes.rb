@@ -12,7 +12,7 @@ AlgsoRails::Application.routes.draw do
   root 'home#index'
   match '/login' ,to: 'sessions#new' ,via:'get'
   match '/info' ,to: 'user#info' ,via:'get'
-  # match '/alg/:id' ,to: 'alg_info#index' ,via:'get'
+  match '/:username/:algname' ,to: 'alg_info#index' ,via:'get'
   match '/search' ,to: 'search#index' ,via:'get'
   match '/create' ,to: 'alg_info#new' ,via:'get'
 
