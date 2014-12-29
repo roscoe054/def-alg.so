@@ -1,6 +1,9 @@
 # coding: utf-8
 class AlgInfoController < ApplicationController
   def index
+    connect_mongodb()
+    @user = User.find_by({name:params[:username]})
+    @alg = @algs.find({name:params[:algname],user_id:@user.id.to_s}).next()
   end
 
   def new

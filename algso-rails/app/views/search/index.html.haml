@@ -5,7 +5,7 @@
       .col-lg-4
         %form{:method=>"get",:style=>"margin-top: -5px; margin-bottom: 10px;"}
           .input-group
-            %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"分词"}
+            %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"#{params[:keyword]||"分词"}"}
             %span.input-group-btn
               %button.btn.btn-primary{:type=>"submit"} 搜索
       %a{:href=>"#",:style=>"font-size:14px;"} 高级搜索
