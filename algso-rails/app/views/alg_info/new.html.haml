@@ -1,0 +1,20 @@
+.container
+  %h3.page-header
+    创建
+  .col-lg-1
+  .col-lg-10
+    %form.form-horizontal{action:"alg_info",method:"post", 'accept-charset'=>"UTF-8"}
+      .form-group
+        %label.col-lg-2.control-label{:for=>"alg-name"} 名称
+        .col-lg-4
+          %input.form-control#alg-name{type:"text",placeholder:"安装包唯一标示符，如 suanfa-1",name:"name"}
+      .form-group
+        %label.col-lg-2.control-label{:for=>"alg-desc"} 简介
+        .col-lg-8
+          %textarea.form-control#alg-desc{type:"text",placeholder:"介绍下这个算法吧~",name:"desc"}
+      %input{type:"hidden",name:"user_id",value:"#{current_user.id}"}
+      %input{type:"hidden",name:"user_name",value:"#{current_user.name}"}
+      .form-group
+        .col-lg-2
+        .col-lg-8
+          %button.form-control.btn.btn-primary{type:"submit",style:"margin-top:10px; width:100px;"} 创建

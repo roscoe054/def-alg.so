@@ -1,2 +1,7 @@
-%p
-  = alg
+%a.alg-name{:href=>"/#{current_user.name}/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
+
+%p.alg-intro
+  - if alg['desc'] and !alg['desc'].blank?
+    = alg['desc']
+  - else
+    = "#{alg['name']||alg['bundle_name']} 是个好算法，用过的都说好。"

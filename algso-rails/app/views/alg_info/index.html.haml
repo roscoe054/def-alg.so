@@ -1,22 +1,29 @@
 .container
   %h3.page-header 
-    %a{:href=>"#"} Vixuowis
+    %a{:href=>"/user/#{@user.id}"}= @user.name
     \/
-    naive-bayes
-    %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 文本处理
-    %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 机器学习
+    = @alg['name']
+    / %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 文本处理
+    / %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 机器学习
     %br
-    %small 朴素贝叶斯分类器，可实现文本分类，绝对棒棒哒。
+    %small
+      - if @alg['desc'] and !@alg['desc'].blank?
+        = @alg['desc']
+      - else
+        = "#{@alg['name']||@alg['bundle_name']} 是个好算法，用过的都说好。"
     %a.glyphicon.glyphicon-pencil{:style=>"font-size:16px; margin-left:10px;",:href=>"#"}
   
   .row
     .col-lg-8
       %h4 
         试用地址: 
-        %a{:href=>"#"} http://vixuowis.me/naive-bayes
+        %a{:href=>"#"} http://womujia.com
+        / http://vixuowis.me/naive-bayes
       %h4 
         资费标准: 
-        1 RMB / 百次调用
+        1
+        %img{:src=>"/assets/yen.png",:style=>"width:17px; margin-bottom:5px;"} 
+        \/ 百次调用
     .col-lg-4
       .panel.panel-info 
         .panel-heading 说明文档

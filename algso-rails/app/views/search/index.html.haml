@@ -1,14 +1,18 @@
 .container
   %h3.page-header
     .row
-      .col-lg-2 搜索算法
+      .col-lg-2 搜索
       .col-lg-4
-        %form{:method=>"get"}
+        %form{:method=>"get",:style=>"margin-top: -5px; margin-bottom: 10px;"}
           .input-group
-            %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"分词"}
+            %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"#{params[:keyword]||"分词"}"}
             %span.input-group-btn
-              %button.btn.btn-primary{:type=>"submit"} 搜一下
+              %button.btn.btn-primary{:type=>"submit"} 搜索
       %a{:href=>"#",:style=>"font-size:14px;"} 高级搜索
 
-  - @algs_list.each do |alg|
-    = render partial: 'search/alg_search', locals: {alg:alg}
+  .row
+    .col-lg-2 此处应有过滤器
+    .col-lg-10
+      - @algs_list.each do |alg|
+        .alg-info
+          = render partial: 'search/alg_search', locals: {alg:alg}
