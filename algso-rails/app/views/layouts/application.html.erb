@@ -14,11 +14,12 @@
       <div class="container">
         <a class="navbar-brand" href="/"><img alt="Brand" src="/favicon.ico" style="vertical-align: text-top; width:20px;"> ALG.SO α</a>
         <ul class="nav navbar-nav">
-          <li class="<%= 'active' if current_page?(search_path) %>"><a href="/search">探索</a></li>
-          <li class="<%= 'active' if current_page?(create_path) %>"><a href="/create">发布我的算法</a></li>
+          <li class="<%= 'active' if current_page?(search_path) %>"><a href="/search">找个算法</a></li>
+          <li><a href="/">算法小店</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+          <li class="<%= 'active' if current_page?(create_path) %>" style="margin-right:10px;"><a href="/create">创建我的算法</a></li>
           <%if !current_user.nil?%>
             <%= render partial: "layouts/user" %>
           <%else%>
