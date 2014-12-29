@@ -19,8 +19,8 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li class="<%= 'active' if current_page?(create_path) %>" style="margin-right:10px;"><a href="/create">创建我的算法</a></li>
           <%if !current_user.nil?%>
+            <li class="<%= 'active' if current_page?(create_path) %>" style="margin-right:10px;"><a href="/create">创建我的算法</a></li>
             <%= render partial: "layouts/user" %>
           <%else%>
             <li class="<%= 'active' if current_page?(signin_path) || current_page?(login_path) %>"><a href="/signin">登录</a></li>
