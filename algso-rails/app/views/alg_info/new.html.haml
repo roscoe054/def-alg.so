@@ -5,9 +5,11 @@
   .col-lg-10
     %form.form-horizontal{action:"alg_info",method:"post", 'accept-charset'=>"UTF-8"}
       .form-group
-        %label.col-lg-2.control-label{:for=>"alg-name"} 名称
-        .col-lg-4
-          %input.form-control#alg-name{type:"text",placeholder:"安装包唯一标示符，如 suanfa-1",name:"name"}
+        %label.col-lg-2.control-label{:for=>"alg-name"} 算法唯一标识
+        %h4.pull-left.control-label{:style=>"text-align:left; margin-left:15px;"}
+          = "http:// www.alg.so / #{current_user.name} / "
+        .col-lg-3
+          %input.form-control#alg-name{type:"text",placeholder:"cool-name-1",name:"name"}
       .form-group
         %label.col-lg-2.control-label{:for=>"alg-desc"} 简介
         .col-lg-8

@@ -1,4 +1,4 @@
-%a.alg-name{:href=>"/#{current_user.name}/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
+%a.alg-name{:href=>"/#{alg['user_name']}/#{alg['bundle_name']}"}= alg['name'] || alg['bundle_name']
 
 %p.alg-intro
   - if alg['desc'] and !alg['desc'].blank?
