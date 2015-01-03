@@ -72,18 +72,18 @@ algsoCtrls.controller('loginCtrl', function($scope) {
 
 	// focus
 	$scope.focusIn = ''
-	$scope.inputFocus = function(e){
+	$scope.inputFocus = function(e) {
 		$scope.focusIn = e.target.name
-    }
-    $scope.inputBlur = function(){
-    	$scope.focusIn = ""
-    }
+	}
+	$scope.inputBlur = function() {
+		$scope.focusIn = ""
+	}
 
-    //form link
-    $scope.formLink = 'login'
-    $scope.linkTo = function(link){
-    	$scope.formLink = link
-    }
+	//form link
+	$scope.formLink = 'login'
+	$scope.linkTo = function(link) {
+		$scope.formLink = link
+	}
 
 	ReserveCtrlReady($scope)
 })
@@ -96,5 +96,4 @@ function ReserveCtrlReady($scope) {
 			$scope.checkEnableLogin()
 		}, 200)
 	});
-	console.log("ready")
 }

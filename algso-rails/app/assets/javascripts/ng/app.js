@@ -2,6 +2,11 @@ var algsoApp = angular.module('algsoApp',[
     'algsoCtrls'
 ]);
 
+// work with turbolink when only body reload bootstrap angular
+$(document).on('ready page:load', function() {
+    angular.bootstrap("body", ['algsoApp'])
+})
+
 // 使angular post采用rails可接收形式
 algsoApp.config(function($httpProvider) {
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
