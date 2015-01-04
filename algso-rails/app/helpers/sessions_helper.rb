@@ -23,6 +23,14 @@ module SessionsHelper
 		cookies[:remember_token] = remember_token
 		user.update_attribute(:remember_token, User.encrypt(remember_token))
 		self.current_user = user
+
+		# get same username records count, and set user_id
+		sameNameUsersCount = User.count(:conditions => "name == '" + user.name + "'")
+		if(sameNameUsersCount == 1)
+			user.update_attribute(:name_id, user.name)
+		else
+			user.update_attribute(:name_id, user.name + '-' + sameNameUsersCount.to_s)
+		end
 	end
 
 	def signed_in?

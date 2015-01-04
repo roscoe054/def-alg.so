@@ -6,11 +6,12 @@ AlgsoRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   
-  resources :user
+  resources :user, param: :name_id
+
   resources :alg_info
   resources :sessions, only: [:new, :create, :destroy]
+
   root 'home#index'
-  match '/info' ,to: 'user#info' ,via:'get'
   match '/:username/:algname' ,to: 'alg_info#index' ,via:'get'
   match '/search' ,to: 'search#index' ,via:'get'
   match '/create' ,to: 'alg_info#new' ,via:'get'

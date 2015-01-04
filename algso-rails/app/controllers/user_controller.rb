@@ -13,6 +13,7 @@ class UserController < ApplicationController
 	end
 
 	def show
+		current_user = User.find_by(name_id: params[:name_id])
 		@user = current_user
 		if current_user.avatar.nil?
 			current_user.avatar = current_user.gravatar_url(:s => 200)

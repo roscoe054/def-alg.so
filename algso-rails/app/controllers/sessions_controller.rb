@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
 	# login
 	def new
-		# view data
+		# set view data
 		@client_id = CLIENT_ID
 
 		# github oauth code
@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			sign_in (user)
-			redirect_to user
+			redirect_to :controller => 'user', :action => 'show', :name_id => user['name_id']
 		else
 			flash.now[:error] = "邮箱 / 密码有误"
 			render "new"
