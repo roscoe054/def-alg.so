@@ -56,3 +56,5 @@ gem 'gravtastic'
 
 gem 'mongo'
 gem 'bson_ext'
+
+gem 'alipay', '~> 0.1.0'
