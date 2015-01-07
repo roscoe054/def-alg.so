@@ -1,7 +1,7 @@
 module SessionsHelper
 	def sign_in(user)
 		remember_token = User.new_remember_token
-		rememberPwd = params[:session][:remember]
+		rememberPwd = params[:remember]
 		if rememberPwd == "on"
 			cookies.permanent[:remember_token] = remember_token
 		else
@@ -9,6 +9,7 @@ module SessionsHelper
 		end
 		user.update_attribute(:remember_token, User.encrypt(remember_token))
 		self.current_user = user
+		puts self.current_user
 	end
 
 	def sign_in_with_github(user)
@@ -19,17 +20,25 @@ module SessionsHelper
 	end
 
 	def save_in(user)
-		remember_token = User.new_remember_token
-		cookies[:remember_token] = remember_token
-		user.update_attribute(:remember_token, User.encrypt(remember_token))
-		self.current_user = user
+		if user.save
+			remember_token = User.new_remember_token
+			cookies[:remember_token] = remember_token
+			user.update_attribute(:remember_token, User.encrypt(remember_token))
+			self.current_user = user
 
-		# get same username records count, and set user_id
-		sameNameUsersCount = User.count(:conditions => "name == '" + user.name + "'")
-		if(sameNameUsersCount == 1)
-			user.update_attribute(:name_id, user.name)
+			# get same username records count, and set user_id
+			sameNameUsersCount = User.count(:conditions => "name == '" + user.name + "'")
+			if(sameNameUsersCount == 1)
+				user.update_attribute(:name_id, user.name)
+			else
+				user.update_attribute(:name_id, user.name + '-' + sameNameUsersCount.to_s)
+			end
+			
+			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
+			redirect_to root_path
 		else
-			user.update_attribute(:name_id, user.name + '-' + sameNameUsersCount.to_s)
+			flash[:error] = "注册失败，请检查信息是否有效"
+			redirect_to root_path
 		end
 	end
 

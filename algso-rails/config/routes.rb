@@ -15,8 +15,9 @@ AlgsoRails::Application.routes.draw do
   match '/:username/:algname' ,to: 'alg_info#index' ,via:'get'
   match '/search' ,to: 'search#index' ,via:'get'
   match '/create' ,to: 'alg_info#new' ,via:'get'
-  
-  match '/login' ,to: 'sessions#new' ,via:'get'
+
+  match '/login' ,to: 'sessions#create' ,via: 'post'
+  match '/login' ,to: 'sessions#new' ,via: 'get'
   match '/signin', to: 'sessions#new',via: 'get'
   match '/signout', to: 'sessions#destroy',via: 'delete'
   

@@ -1,32 +1,34 @@
 var algsoCtrls = angular.module('algsoCtrls', []);
 
-algsoCtrls.controller('loginCtrl', function($scope) {
+algsoCtrls.controller('loginCtrl', function($http,$scope) {
 	// Email validation
-	var regEmail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/
+	var regEmail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/,
+		regName = /^([a-zA-Z0-9]+[_|\_|\.|-]?)*[a-zA-Z0-9]$/
 
 	// data
 	$scope.userLoginData = {
 		email: "",
-		pwd: ""
+		password: "",
+		remember: false
 	}
 
 	$scope.userSignupData = {
 		email: "",
 		name: "",
-		pwd: "",
-		pwdConfirm: ""
+		password: "",
+		passwordConfirm: ""
 	}
 
 	// hint
 	$scope.loginHint = {
 		email: true,
-		pwd: true
+		password: true
 	}
 	$scope.signupHint = {
 		email: true,
 		name: true,
-		pwd: true,
-		pwdConfirm: true
+		password: true,
+		passwordConfirm: true
 	}
 
 	// submit enable
@@ -38,9 +40,9 @@ algsoCtrls.controller('loginCtrl', function($scope) {
 		var loginHint = $scope.loginHint
 
 		loginHint.email = regEmail.test($scope.userLoginData.email)
-		loginHint.pwd = $scope.userLoginData.pwd.length >= 6
+		loginHint.password = $scope.userLoginData.password.length >= 6
 
-		if (loginHint.email && loginHint.pwd) {
+		if (loginHint.email && loginHint.password) {
 			$scope.enableLogin = true
 		} else {
 			$scope.enableLogin = false
@@ -56,10 +58,10 @@ algsoCtrls.controller('loginCtrl', function($scope) {
 
 		signupHint.email = regEmail.test($scope.userSignupData.email)
 		signupHint.name = $scope.userSignupData.name.length >= 2
-		signupHint.pwd = $scope.userSignupData.pwd.length >= 6
-		signupHint.pwdConfirm = $scope.userSignupData.pwdConfirm === $scope.userSignupData.pwd
+		signupHint.password = $scope.userSignupData.password.length >= 6
+		signupHint.passwordConfirm = $scope.userSignupData.passwordConfirm === $scope.userSignupData.password
 
-		if (signupHint.email && signupHint.name && signupHint.pwd && signupHint.pwdConfirm) {
+		if (signupHint.email && signupHint.name && signupHint.password && signupHint.passwordConfirm) {
 			$scope.enableSignup = true
 		} else {
 			$scope.enableSignup = false
@@ -79,10 +81,27 @@ algsoCtrls.controller('loginCtrl', function($scope) {
 		$scope.focusIn = ""
 	}
 
-	//form link
+	// form link
 	$scope.formLink = 'login'
 	$scope.linkTo = function(link) {
 		$scope.formLink = link
+	}
+
+	// login/signup submit
+	$scope.loginSubmit = function() {
+		// 组织数据
+		var reqData = angular.copy($scope.userLoginData)
+
+		// 上传
+		$http({
+			url: "http://" + location.host + '/login',
+			data: reqData,
+			method: "POST"
+		}).success(function(data) {
+			if(data.req === "succeed"){
+				location.href = "/user/" + data.name_id
+			}
+		})
 	}
 
 	ReserveCtrlReady($scope)
