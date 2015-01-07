@@ -16,13 +16,16 @@ AlgsoRails::Application.routes.draw do
   match '/search' ,to: 'search#index' ,via:'get'
   match '/create' ,to: 'alg_info#new' ,via:'get'
 
-  match '/login' ,to: 'sessions#create' ,via: 'post'
   match '/login' ,to: 'sessions#new' ,via: 'get'
-  match '/signin', to: 'sessions#new',via: 'get'
+  match '/signup', to: 'sessions#new',via: 'get'
   match '/signout', to: 'sessions#destroy',via: 'delete'
   
   # test case
   match '/test/alg1' ,to: 'alg_example#alg1' ,via:'get'
+
+  # apis
+  match '/api/signup' ,to: 'user#create' ,via: 'post'
+  match '/api/login' ,to: 'sessions#create' ,via: 'post'
 
   # root to: 'static_pages#home'
   # match '/signup', to: 'users#new',via: 'get'

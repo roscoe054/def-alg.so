@@ -1,3 +1,4 @@
+require 'json'
 # coding: utf-8
 class UserController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create]
@@ -22,11 +23,11 @@ class UserController < ApplicationController
 
 	def create
 		user = User.new(user_params)
-		save_in user 
+		saveInfo = save_in user
+		render json: JSON.generate(saveInfo)
 	end
 	private
 		def user_params
-			params.require(:user).permit(:name, :email, :password,
-			:password_confirmation)
+			params.permit(:name, :email, :password, :password_confirmation)
 		end
 end

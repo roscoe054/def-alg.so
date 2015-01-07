@@ -34,12 +34,12 @@ module SessionsHelper
 				user.update_attribute(:name_id, user.name + '-' + sameNameUsersCount.to_s)
 			end
 			
-			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
-			redirect_to root_path
+			returnInfo = {"req" => "success", "err" => "", "info" => "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"}
 		else
-			flash[:error] = "注册失败，请检查信息是否有效"
-			redirect_to root_path
+			returnInfo = {"req" => "error", "err" => "", "info" => "注册失败，请检查信息是否填写完整"} 
 		end
+		
+		return returnInfo
 	end
 
 	def signed_in?

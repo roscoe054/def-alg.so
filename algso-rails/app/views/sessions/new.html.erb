@@ -43,7 +43,7 @@
 		</div>
 	</form>
 
-	<form class="signup-form hidden" accept-charset="UTF-8" action="/user" id="new_user" method="post" name="myform" ng-class="{'hidden': formLink !== 'signup'}">
+	<form class="signup-form" ng-class="{'hidden': formLink !== 'signup'}">
 		<h1>注册</h1>
 		<div class="link-hint">
 			已经有帐号了？<a href="javascript:void(0)" id="link_to_login" ng-click="linkTo('login')">点此登录</a>
@@ -90,20 +90,20 @@
 		
 		<!-- password confirm -->
 		<div class="input-wrap" ng-class="{'input-focus': focusIn === 'user[password_confirmation]'}">
-			<input class="form-item" type="password" placeholder="确认密码" name="user[password_confirmation]" ng-model="userSignupData.passwordConfirm"
+			<input class="form-item" type="password" placeholder="确认密码" name="user[password_confirmation]" ng-model="userSignupData.password_confirmation"
 			ng-change="checkEnableSignup()"
 			ng-focus="inputFocus($event)" 
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.passwordConfirm || userSignupData.passwordConfirm === ''}">
+		<div class="form-hint" ng-class="{'hidden': signupHint.password_confirmation || userSignupData.password_confirmation === ''}">
 			<small>密码不匹配</small>
 		</div>
 		
 		<!-- operation -->
 		<div class="bottom-row">
 			<input id="signup_submit" type="submit" value="注册" name="commit" 
-			ng-class="{'active': enableSignup}">
+			ng-class="{'active': enableSignup}" ng-click="signupSubmit()">
 		</div>
 	</form>
 

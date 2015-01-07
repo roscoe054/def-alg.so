@@ -1,35 +1,21 @@
 var algsoCtrls = angular.module('algsoCtrls', []);
 
-algsoCtrls.controller('loginCtrl', function($http,$scope) {
+algsoCtrls.controller('appCtrl', function($scope,DataFormat) {
+	$scope.flashNote = DataFormat.flashNote
+})
+
+algsoCtrls.controller('loginCtrl', function($http,$scope,Service,DataFormat) {
 	// Email validation
 	var regEmail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/,
 		regName = /^([a-zA-Z0-9]+[_|\_|\.|-]?)*[a-zA-Z0-9]$/
 
-	// data
-	$scope.userLoginData = {
-		email: "",
-		password: "",
-		remember: false
-	}
-
-	$scope.userSignupData = {
-		email: "",
-		name: "",
-		password: "",
-		passwordConfirm: ""
-	}
+	// login/signup data
+	$scope.userLoginData = DataFormat.userLoginData
+	$scope.userSignupData = DataFormat.userSignupData
 
 	// hint
-	$scope.loginHint = {
-		email: true,
-		password: true
-	}
-	$scope.signupHint = {
-		email: true,
-		name: true,
-		password: true,
-		passwordConfirm: true
-	}
+	$scope.loginHint = DataFormat.loginHint
+	$scope.signupHint = DataFormat.signupHint
 
 	// submit enable
 	$scope.enableLogin = false;
@@ -59,9 +45,9 @@ algsoCtrls.controller('loginCtrl', function($http,$scope) {
 		signupHint.email = regEmail.test($scope.userSignupData.email)
 		signupHint.name = $scope.userSignupData.name.length >= 2
 		signupHint.password = $scope.userSignupData.password.length >= 6
-		signupHint.passwordConfirm = $scope.userSignupData.passwordConfirm === $scope.userSignupData.password
+		signupHint.password_confirmation = $scope.userSignupData.password_confirmation === $scope.userSignupData.password
 
-		if (signupHint.email && signupHint.name && signupHint.password && signupHint.passwordConfirm) {
+		if (signupHint.email && signupHint.name && signupHint.password && signupHint.password_confirmation) {
 			$scope.enableSignup = true
 		} else {
 			$scope.enableSignup = false
@@ -82,9 +68,11 @@ algsoCtrls.controller('loginCtrl', function($http,$scope) {
 	}
 
 	// form link
-	$scope.formLink = 'login'
+	$scope.formLink = location.pathname === "/signup" ? 'signup' : 'login'
 	$scope.linkTo = function(link) {
 		$scope.formLink = link
+		Service.hideFlashNote()
+		history.replaceState(null, "", link);
 	}
 
 	// login/signup submit
@@ -94,12 +82,32 @@ algsoCtrls.controller('loginCtrl', function($http,$scope) {
 
 		// 上传
 		$http({
-			url: "http://" + location.host + '/login',
+			url: "http://" + location.host + '/api/login',
 			data: reqData,
 			method: "POST"
 		}).success(function(data) {
-			if(data.req === "succeed"){
+			if(data.req === "success"){
 				location.href = "/user/" + data.name_id
+			} else{
+				Service.showFlashNote(data.req, data.info)
+			}
+		})
+	}
+
+	$scope.signupSubmit = function() {
+		// 组织数据
+		var reqData = angular.copy($scope.userSignupData)
+
+		// 上传
+		$http({
+			url: "http://" + location.host + '/api/signup',
+			data: reqData,
+			method: "POST"
+		}).success(function(data) {
+			if(data.req === "success"){
+				location.href = "/"
+			} else{
+				Service.showFlashNote(data.req, data.info)
 			}
 		})
 	}

@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 		session_code = params[:code] 
 
 		# github user login
-		if !session_code.nil? 
+		if !session_code.nil?
 			# get access_token
 			result = RestClient.post('https://github.com/login/oauth/access_token',
 									{:client_id => CLIENT_ID,
@@ -42,12 +42,18 @@ class SessionsController < ApplicationController
 				sign_in_with_github user
 				redirect_to :controller=>'user', :action => 'show', :name_id => user['name_id']
 			else
-				user = User.new(:name => auth_result['login'], 
+				user = User.new(:name => auth_result['login'],
 								:email => auth_result['email'],
 								:avatar => auth_result['avatar_url'],
 								:password => CLIENT_SECRET,
 								:password_confirmation => CLIENT_SECRET)
-				save_in user
+
+				saveInfo = save_in user
+
+				#req 可能为success或error
+				flash[saveInfo['req']] = saveInfo['info']
+
+				redirect_to root_path
 			end
 		end
 	end
@@ -56,9 +62,9 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:email].downcase)
 		if user && user.authenticate(params[:password])
 			sign_in (user)
-			render json: {"req" => "succeed", "err" => "", "name_id" => user.name_id}
+			render json: {"req" => "success", "err" => "", "name_id" => user.name_id}
 		else
-			render json: {"req" => "err", "err" => "auth fail"}
+			render json: {"req" => "error", "err" => "auth fail", "info" => "用户名/密码有误"}
 		end
 	end
 
