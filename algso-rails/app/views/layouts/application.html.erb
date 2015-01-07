@@ -8,7 +8,7 @@
 	<!-- <link rel="SHORTCUT ICON" href="assets/favicon.ico"> -->
 	</head>
 
-	<body>
+	<body ng-controller="appCtrl">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <a class="navbar-brand" href="/"><img alt="Brand" src="/favicon.ico" style="vertical-align: text-top; width:20px;"> ALG.SO</a>
@@ -22,12 +22,16 @@
             <li class="<%= 'active' if current_page?(create_path) %>" style="margin-right:10px;"><a href="/create">创建我的算法</a></li>
             <%= render partial: "layouts/user" %>
           <%else%>
-            <li class="<%= 'active' if current_page?(signin_path) || current_page?(login_path) %>"><a href="/signin">登录</a></li>
+            <li class="<%= 'active' if current_page?(signup_path) || current_page?(login_path) %>"><a href="/login">登录</a></li>
           <%end%>
         </ul>
       </div>
-      
 		</nav>
+
+    <!-- flash note for angular-->
+    <div class="alert" ng-class="{'hidden': flashNote.hidden, 'alert-success': flashNote.type === 'success', 
+    'alert-error': flashNote.type === 'error'}">{{flashNote.info}}</div>
+    <!-- flash note for rails-->
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>

@@ -20,8 +20,11 @@ $hintgrey: #999;
 /* layout style */
 
 /* common component */
+.alert{
+	text-align: center;
+	margin: 0;
+}
 .alert-error{
-	text-align:center;
 	color: #c30;
 	background-color: #fdf;
 }

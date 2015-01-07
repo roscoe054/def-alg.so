@@ -13,16 +13,16 @@ class SessionsController < ApplicationController
 	 	CLIENT_SECRET    = "91cb4f1fe152ecfc3db6a9739eab203d3c523900"
 	end
 
-	# login
+	# login/signup with github
 	def new
-		# view data
+		# set view data
 		@client_id = CLIENT_ID
 
 		# github oauth code
 		session_code = params[:code] 
 
 		# github user login
-		if !session_code.nil? 
+		if !session_code.nil?
 			# get access_token
 			result = RestClient.post('https://github.com/login/oauth/access_token',
 									{:client_id => CLIENT_ID,
@@ -37,36 +37,34 @@ class SessionsController < ApplicationController
 									:accept => :json}))
 
 			# search user and decide login or save new user
-			user = User.find_by(name: auth_result['login'])
+			user = User.find_by(email: auth_result['email'])
 			if user
 				sign_in_with_github user
-				redirect_to user
+				redirect_to :controller=>'user', :action => 'show', :name_id => user['name_id']
 			else
-				user = User.new(:name => auth_result['login'], 
+				user = User.new(:name => auth_result['login'],
 								:email => auth_result['email'],
 								:avatar => auth_result['avatar_url'],
 								:password => CLIENT_SECRET,
 								:password_confirmation => CLIENT_SECRET)
-				if user.save
-					save_in user
-					flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
-					redirect_to root_path
-				else
-					flash[:error] = "注册失败，请检查信息是否有效"
-					redirect_to root_path
-				end
+
+				saveInfo = save_in user
+
+				#req 可能为success或error
+				flash[saveInfo['req']] = saveInfo['info']
+
+				redirect_to root_path
 			end
 		end
 	end
 
 	def create
-		user = User.find_by(email: params[:session][:email].downcase)
-		if user && user.authenticate(params[:session][:password])
+		user = User.find_by(email: params[:email].downcase)
+		if user && user.authenticate(params[:password])
 			sign_in (user)
-			redirect_to user
+			render json: {"req" => "success", "err" => "", "name_id" => user.name_id}
 		else
-			flash.now[:error] = "邮箱 / 密码有误"
-			render "new"
+			render json: {"req" => "error", "err" => "auth fail", "info" => "用户名/密码有误"}
 		end
 	end
 

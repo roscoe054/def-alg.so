@@ -1,3 +1,4 @@
+require 'json'
 # coding: utf-8
 class UserController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create]
@@ -13,6 +14,7 @@ class UserController < ApplicationController
 	end
 
 	def show
+		current_user = User.find_by(name_id: params[:name_id])
 		@user = current_user
 		if current_user.avatar.nil?
 			current_user.avatar = current_user.gravatar_url(:s => 200)
@@ -21,18 +23,11 @@ class UserController < ApplicationController
 
 	def create
 		user = User.new(user_params)
-		if user.save
-			save_in user
-			flash[:success] = "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"
-			redirect_to root_path
-		else
-			flash[:error] = "注册失败，请检查信息是否有效"
-			redirect_to root_path
-		end
+		saveInfo = save_in user
+		render json: JSON.generate(saveInfo)
 	end
 	private
 		def user_params
-			params.require(:user).permit(:name, :email, :password,
-			:password_confirmation)
+			params.permit(:name, :email, :password, :password_confirmation)
 		end
 end

@@ -1,6 +1,5 @@
 <div class="login" ng-controller="loginCtrl">
-	<form class="login-form " accept-charset="UTF-8" action="/sessions" method="post" 
-		ng-class="{'hidden': formLink !== 'login'}">
+	<form class="login-form " ng-class="{'hidden': formLink !== 'login'}">
 		<h1>登录</h1>
 		<div class="link-hint">
 			还没有帐号？<a href="javascript:void(0)" ng-click="linkTo('signup')">点此注册</a>
@@ -22,13 +21,13 @@
 		<!-- password -->
 		<div class="input-wrap" ng-class="{'input-focus': focusIn === 'session[password]'}">
 			<input class="form-item" type="password" placeholder="密码" name="session[password]" 
-			ng-model="userLoginData.pwd" 
-			ng-change="checkEnableLogin()" 
+			ng-model="userLoginData.password" 
+			ng-change="checkEnableLogin()"
 			ng-focus="inputFocus($event)"
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint hidden" ng-class="{'hidden': loginHint.pwd || userLoginData.pwd === ''}">
+		<div class="form-hint hidden" ng-class="{'hidden': loginHint.password || userLoginData.password === ''}">
 			<small>密码长度至少为6位</small>
 		</div>
 		
@@ -36,15 +35,15 @@
 		<a class="fplink">忘记密码了？</a>
 		<div class="bottom-row">
 			<div class="field-wrap">
-				<input type="checkbox" id="logincheck" name="session[remember]"/> 
+				<input type="checkbox" id="logincheck" name="session[remember]" ng-model="userLoginData.remember"/> 
 				<label for="logincheck">记住我</label>  
 			</div>
 			<input id="login_submit" class="login-bt"  type="submit"  value="登录" name="commit" 
-			ng-class="{'active': enableLogin}">
+			ng-class="{'active': enableLogin}" ng-click="loginSubmit()">
 		</div>
 	</form>
 
-	<form class="signup-form hidden" accept-charset="UTF-8" action="/user" id="new_user" method="post" name="myform" ng-class="{'hidden': formLink !== 'signup'}">
+	<form class="signup-form" ng-class="{'hidden': formLink !== 'signup'}">
 		<h1>注册</h1>
 		<div class="link-hint">
 			已经有帐号了？<a href="javascript:void(0)" id="link_to_login" ng-click="linkTo('login')">点此登录</a>
@@ -79,32 +78,32 @@
 		<!-- password -->
 		<div class="input-wrap" ng-class="{'input-focus': focusIn === 'user[password]'}">
 			<input class="form-item" type="password" placeholder="密码" name="user[password]" 
-			ng-model="userSignupData.pwd"
+			ng-model="userSignupData.password"
 			ng-change="checkEnableSignup()"
 			ng-focus="inputFocus($event)" 
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.pwd || userSignupData.pwd === ''}">
+		<div class="form-hint" ng-class="{'hidden': signupHint.password || userSignupData.password === ''}">
 			<small>密码长度至少为6位</small>
 		</div>
 		
 		<!-- password confirm -->
 		<div class="input-wrap" ng-class="{'input-focus': focusIn === 'user[password_confirmation]'}">
-			<input class="form-item" type="password" placeholder="确认密码" name="user[password_confirmation]" ng-model="userSignupData.pwdConfirm"
+			<input class="form-item" type="password" placeholder="确认密码" name="user[password_confirmation]" ng-model="userSignupData.password_confirmation"
 			ng-change="checkEnableSignup()"
 			ng-focus="inputFocus($event)" 
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.pwdConfirm || userSignupData.pwdConfirm === ''}">
+		<div class="form-hint" ng-class="{'hidden': signupHint.password_confirmation || userSignupData.password_confirmation === ''}">
 			<small>密码不匹配</small>
 		</div>
 		
 		<!-- operation -->
 		<div class="bottom-row">
 			<input id="signup_submit" type="submit" value="注册" name="commit" 
-			ng-class="{'active': enableSignup}">
+			ng-class="{'active': enableSignup}" ng-click="signupSubmit()">
 		</div>
 	</form>
 
@@ -115,120 +114,3 @@
 		</a>
 	</div>
 </div>
-
-<script type="text/javascript">
-// $(document).ready(function() {
-// 	window.history.replaceState("","","login")
-	
-// 	$(".input-wrap input").focus(function() {
-// 		$(this).parent().css("border-color", "#09C")
-// 	})
-// 	$(".input-wrap input").blur(function() {
-// 		$(this).parent().css("border-color", "#CCC")
-// 	})
-
-// 	$("#link_to_login").click(function(){
-// 		$(".login-form").removeClass("hidden")
-// 		$(".signup-form").addClass("hidden")
-// 	})
-
-// 	$("#link_to_signup").click(function(){
-// 		$(".login-form").addClass("hidden")
-// 		$(".signup-form").removeClass("hidden")
-// 	})
-
-// 	//moduleSignup
-// 	var moduleSignup = (function(){
-// 		var validAll = false
-// 		var validEmail = false
-// 		$("input[name='user[email]']").keyup(function() {
-// 			var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/
-// 			validEmail = reg.test($(this).val())
-// 			if (!validEmail) {
-// 				$(".signup-form .form-hint").eq(0).removeClass("hidden")
-// 			} else {
-// 				$(".signup-form .form-hint").eq(0).addClass("hidden")
-// 			}
-// 		})
-
-// 		var validName = false
-// 		$("input[name='user[name]']").keyup(function() {
-// 			validName = $(this).val().length > 2 ? true : false
-// 			if (!validName) {
-// 				$(".signup-form .form-hint").eq(1).removeClass("hidden")
-// 			} else {
-// 				$(".signup-form .form-hint").eq(1).addClass("hidden")
-// 			}
-// 		})
-
-// 		var validPassword = false
-// 		$("input[name='user[password]']").keyup(function() {
-// 			validPassword = $(this).val().length > 5 ? true : false
-// 			if (!validPassword) {
-// 				$(".signup-form .form-hint").eq(2).removeClass("hidden")
-// 			} else {
-// 				$(".signup-form .form-hint").eq(2).addClass("hidden")
-// 			}
-// 		})
-
-// 		var validPasswordConf = false
-// 		$("input[name='user[password_confirmation]']").keyup(function() {
-// 			validPasswordConf = $(this).val() === $("input[name='user[password]']").val() ? true : false
-// 			if (!validPasswordConf) {
-// 				$(".signup-form .form-hint").eq(3).removeClass("hidden")
-// 			} else {
-// 				$(".signup-form .form-hint").eq(3).addClass("hidden")
-// 			}
-// 		})
-
-// 		$(".signup-form .form-item").keyup(function() {
-// 			validAll = validEmail && validPassword && validPassword && validPasswordConf
-// 			if (validAll) {
-// 				$("#signup_submit").addClass("active")
-// 				$("#signup_submit").attr("disabled", false)
-// 			} else {
-// 				$("#signup_submit").removeClass("active")
-// 				$("#signup_submit").attr("disabled", true)
-// 			}
-// 		})
-// 	})()
-
-// 	//moduleLogin
-// 	var moduleLogin = (function(){
-// 		var validAll = false
-// 		var validEmail = false
-// 		$("input[name='session[email]']").keyup(function() {
-// 			var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$/
-// 			validEmail = reg.test($(this).val())
-// 			if (!validEmail) {
-// 				$(".login-form .form-hint").eq(0).removeClass("hidden")
-// 			} else {
-// 				$(".login-form .form-hint").eq(0).addClass("hidden")
-// 			}
-// 		})
-
-// 		var validPassword = false
-// 		$("input[name='session[password]']").keyup(function() {
-// 			validPassword = $(this).val().length > 5 ? true : false
-// 			if (!validPassword) {
-// 				$(".login-form .form-hint").eq(1).removeClass("hidden")
-// 			} else {
-// 				$(".login-form .form-hint").eq(1).addClass("hidden")
-// 			}
-// 		})
-
-// 		$(".login-form .form-item").keyup(function() {
-// 			validAll = validEmail && validPassword
-// 			if (validAll) {
-// 				$("#login_submit").addClass("active")
-// 				$("#login_submit").attr("disabled", false)
-// 			} else {
-// 				$("#login_submit").removeClass("active")
-// 				$("#login_submit").attr("disabled", true)
-// 			}
-// 		})
-// 	})()
-// })
-
-</script>
-

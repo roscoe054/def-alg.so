@@ -1,5 +1,5 @@
 var algsoApp = angular.module('algsoApp',[
-    'algsoCtrls'
+    'algsoCtrls','algsoFactories'
 ]);
 
 // work with turbolink when only body reload bootstrap angular
