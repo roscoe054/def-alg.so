@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
 								:password => CLIENT_SECRET,
 								:password_confirmation => CLIENT_SECRET)
 
-				saveInfo = save_in user
+				saveInfo = user
 
 				#req 可能为success或error
 				flash[saveInfo['req']] = saveInfo['info']
@@ -60,11 +60,16 @@ class SessionsController < ApplicationController
 
 	def create
 		user = User.find_by(email: params[:email].downcase)
-		if user && user.authenticate(params[:password])
+		if user.nil?
+			render json: {"req" => "error", "err" => "auth fail", "info" => "该邮箱尚未注册"}
+			return 
+		end
+
+		if user.authenticate(params[:password])
 			sign_in (user)
 			render json: {"req" => "success", "err" => "", "name_id" => user.name_id}
 		else
-			render json: {"req" => "error", "err" => "auth fail", "info" => "用户名/密码有误"}
+			render json: {"req" => "error", "err" => "auth fail", "info" => "密码错误，请检查后重试"}
 		end
 	end
 
