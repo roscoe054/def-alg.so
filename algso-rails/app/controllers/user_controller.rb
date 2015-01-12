@@ -3,16 +3,6 @@ require 'json'
 class UserController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create]
 
-	def info
-		if current_user.nil?
-			redirect_to root_path
-		end
-		@user = current_user
-	end
-
-	def login
-	end
-
 	def show
 		current_user = User.find_by(name_id: params[:name_id])
 		if !current_user.nil?
@@ -30,6 +20,7 @@ class UserController < ApplicationController
 		saveInfo = save_in user
 		render json: JSON.generate(saveInfo)
 	end
+
 	private
 		def user_params
 			params.permit(:name, :email, :password, :password_confirmation)
