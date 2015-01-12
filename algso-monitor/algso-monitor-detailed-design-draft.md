@@ -16,10 +16,10 @@
 ### 2.1 增加API的HTTP接口
         
 	URL: {version}/3rdapi/add
-        Method: POST
+	Method: POST
  	Parameters:
-	<table>
-		<tr><td>参数名</td><td>必选</td><td>类型及范围</td><td>备注</td></tr>
-		<tr><td>id</td><td>true</td><td>uint64</td><td>该API地址ID</td></tr>
-		<tr><td>url</td><td>true</td><td>string</td><td>API服务地址</td></tr>
-	</table>
+<table>
+    <tr><td>参数名</td><td>必选</td><td>类型及范围</td><td>备注</td></tr>
+    <tr><td>id</td><td>true</td><td>uint64</td><td>该API地址ID</td></tr>
+    <tr><td>url</td><td>true</td><td>string</td><td>API服务地址</td></tr>
+</table>
