@@ -18,11 +18,11 @@ algsoFactories.factory('DataFormat', function() {
 			password: '',
 			password_confirmation: ''
 		},
-		loginHint: {
+		loginHintHidden: {
 			email: true,
 			password: true
 		},
-		signupHint: {
+		signupHintHidden: {
 			email: true,
 			name: true,
 			password: true,

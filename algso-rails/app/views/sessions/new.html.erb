@@ -11,11 +11,12 @@
 			ng-model="userLoginData.email" 
 			ng-change="checkEnableLogin()" 
 			ng-focus="inputFocus($event)" 
-			ng-blur="inputBlur()">
+			ng-blur="inputBlur()"
+			required>
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint hidden" ng-class="{'hidden': loginHint.email || userLoginData.email === ''}">
-			<small>请输入正确邮箱格式</small>
+		<div class="form-hint hidden" ng-class="{'hidden': loginHintHidden.email}">
+			<small>请输入正确邮箱</small>
 		</div>
 		
 		<!-- password -->
@@ -24,10 +25,11 @@
 			ng-model="userLoginData.password" 
 			ng-change="checkEnableLogin()"
 			ng-focus="inputFocus($event)"
-			ng-blur="inputBlur()">
+			ng-blur="inputBlur()"
+			required>
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint hidden" ng-class="{'hidden': loginHint.password || userLoginData.password === ''}">
+		<div class="form-hint hidden" ng-class="{'hidden': loginHintHidden.password}">
 			<small>密码长度至少为6位</small>
 		</div>
 		
@@ -58,8 +60,8 @@
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.email || userSignupData.email === ''}">
-			<small>请输入正确邮箱格式</small>
+		<div class="form-hint" ng-class="{'hidden': signupHintHidden.email}">
+			<small>请输入正确邮箱</small>
 		</div>
 		
 		<!-- name -->
@@ -71,8 +73,8 @@
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.name || userSignupData.name === ''}">
-			<small>用户名太短了</small>
+		<div class="form-hint" ng-class="{'hidden': signupHintHidden.name}">
+			<small>{{nameHintText}}</small>
 		</div>
 		
 		<!-- password -->
@@ -84,7 +86,7 @@
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.password || userSignupData.password === ''}">
+		<div class="form-hint" ng-class="{'hidden': signupHintHidden.password}">
 			<small>密码长度至少为6位</small>
 		</div>
 		
@@ -96,7 +98,7 @@
 			ng-blur="inputBlur()">
 			<span class="form-required">*</span>
 		</div>
-		<div class="form-hint" ng-class="{'hidden': signupHint.password_confirmation || userSignupData.password_confirmation === ''}">
+		<div class="form-hint" ng-class="{'hidden': signupHintHidden.password_confirmation}">
 			<small>密码不匹配</small>
 		</div>
 		

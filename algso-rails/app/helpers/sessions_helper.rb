@@ -9,7 +9,6 @@ module SessionsHelper
 		end
 		user.update_attribute(:remember_token, User.encrypt(remember_token))
 		self.current_user = user
-		puts self.current_user
 	end
 
 	def sign_in_with_github(user)
@@ -20,6 +19,13 @@ module SessionsHelper
 	end
 
 	def save_in(user)
+		# 验证用户邮箱是否已存在
+		userExists = User.find_by(email: user['email'])
+		if !userExists.nil?
+			returnInfo = {"req" => "error", "err" => "", "info" => "注册失败，该邮箱已被注册"}
+			return returnInfo
+		end
+
 		if user.save
 			remember_token = User.new_remember_token
 			cookies[:remember_token] = remember_token
