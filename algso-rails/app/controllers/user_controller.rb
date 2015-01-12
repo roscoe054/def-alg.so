@@ -15,9 +15,13 @@ class UserController < ApplicationController
 
 	def show
 		current_user = User.find_by(name_id: params[:name_id])
-		@user = current_user
-		if current_user.avatar.nil?
-			current_user.avatar = current_user.gravatar_url(:s => 200)
+		if !current_user.nil?
+			@user = current_user
+			if current_user.avatar.nil?
+				current_user.avatar = current_user.gravatar_url(:s => 200)
+			end
+		else
+			redirect_to root_path #TODO redirect_to 404 page
 		end
 	end
 

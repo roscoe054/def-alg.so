@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
 								:password => CLIENT_SECRET,
 								:password_confirmation => CLIENT_SECRET)
 
-				saveInfo = user
+				saveInfo = save_in user
 
 				#req 可能为success或error
 				flash[saveInfo['req']] = saveInfo['info']
