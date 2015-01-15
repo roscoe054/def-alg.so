@@ -40,7 +40,6 @@ gem 'will_paginate', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem "bcrypt-ruby"
 
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -58,3 +57,6 @@ gem 'mongo'
 gem 'bson_ext'
 
 gem 'alipay', '~> 0.1.0'
+
+gem 'rspec-rails', '~> 3.0'
+gem 'factory_girl_rails', "~> 4.0"

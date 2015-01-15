@@ -33,7 +33,7 @@ module SessionsHelper
 			self.current_user = user
 
 			# get same username records count, and set user_id
-			sameNameUsersCount = User.count(:conditions => "name == '" + user.name + "'")
+			sameNameUsersCount = User.where("name == '" + user.name + "'").count
 			if(sameNameUsersCount == 1)
 				user.update_attribute(:name_id, user.name)
 			else
