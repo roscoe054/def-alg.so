@@ -1,6 +1,6 @@
 .container
   %h3.page-header 
-    %a{:href=>"/user/#{@user.id}"}= @user.name
+    %a{:href=>"/user/#{@user.name}"}= @user.name
     \/
     = @alg['name']
     / %span.label.label-info{:style=>"font-size:14px; vertical-align:middle; padding-bottom:2px"} 文本处理
@@ -14,26 +14,84 @@
     %a.glyphicon.glyphicon-pencil{:style=>"font-size:16px; margin-left:10px;",:href=>"#"}
   
   .row
-    .col-lg-8
-      %h4 
-        试用地址: 
+    .col-lg-9
+      %h4.page-header{style:"margin-top:0px; margin-bottom:20px;"} 创建新应用
+      %p
+        %b 调用地址:
         %a{:href=>"#"} http://womujia.com
+        \/
+        create_new_app
         / http://vixuowis.me/naive-bayes
-      %h4 
-        资费标准: 
-        1
-        %img{:src=>"/assets/yen.png",:style=>"width:17px; margin-bottom:5px;"} 
-        \/ 百次调用
-    .col-lg-4
-      .panel.panel-info 
-        .panel-heading 说明文档
+      %p 
+        %b 方法: 
+        .btn-group
+          %button.btn.btn-xs.btn-default.dropdown-toggle{'data-toggle'=>"dropdown"}
+            GET
+            %span.caret
+      %p 
+        %b 参数: 
+        无
+      %button.btn.btn-xs.btn-default 
+        %i.glyphicon.glyphicon-plus
+        添加参数
+      .row{style:"margin-top:30px;"}
+        .col-lg-6
+          .panel.panel-success 
+            .panel-heading 
+              测试用例
+              %span.label.label-success 100% 通过
+            .panel-body 
+              %p 用例
+        .col-lg-6
+          .panel.panel-info 
+            .panel-heading 
+              性能测试
+            .panel-body
+              %p 
+                可用性
+                %span.label.label-info 99.99%
+              %p 
+                平均响应速度
+                %span.label.label-info 128 ms
+              %p
+                监控可视化
+    .col-lg-3
+      .panel.panel-primary 
+        .panel-heading 
+          API 列表
         .panel-body 
-          %p 本文档意在简要说明算法何种用途，可达到何种要求。
-      .panel.panel-success 
-        .panel-heading 测试面板
-        .panel-body
-          %p 功能测试
-          %p 性能测试
+          .list-group
+            %a.list-group-item.active{:href => "#"} 
+              创建新应用
+              %span.badge GET
+            %a.list-group-item{:href => ""} 
+              训练数据
+              %span.badge POST
+            %a.list-group-item{:href => ""} 
+              获取训练进度
+              %span.badge GET
+            %a.list-group-item{:href => ""} 
+              添加新的数据
+              %span.badge PUT
+
+      .panel.panel-primary 
+        .panel-heading 
+          资费标准
+        .panel-body 
+          %p 
+            %b 免费试用: 
+            100 次 / 50 MB
+          %p 
+            %b 月费: 
+            10
+            %img{:src=>"/assets/yen.png",:style=>"width:17px; margin-bottom:5px;"} 
+            %button.btn.btn-xs.btn-primary 现在购买
+          %p 
+            %b 年费: 
+            100
+            %img{:src=>"/assets/yen.png",:style=>"width:17px; margin-bottom:5px;"} 
+            %button.btn.btn-xs.btn-primary 现在购买
+
           .alert.alert-warning.alert-dismissible{:role=>"alert"}
             %button.close{:type=>"button",'data-dismiss'=>"alert"}
               %span{'aria-hidden'=>"true"} &times;

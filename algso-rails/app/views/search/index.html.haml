@@ -3,7 +3,7 @@
     .row
       .col-lg-2 搜索
       .col-lg-4
-        %form{:method=>"get",:style=>"margin-top: -5px; margin-bottom: 10px;"}
+        %form{:action=>"/search",:method=>"get",:style=>"margin-top: -5px; margin-bottom: 10px;"}
           .input-group
             %input.form-control{:type=>"text",:placeholder=>"分词",:name=>"keyword",:value=>"#{params[:keyword]||"分词"}"}
             %span.input-group-btn
