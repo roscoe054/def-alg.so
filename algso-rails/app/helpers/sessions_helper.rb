@@ -33,12 +33,7 @@ module SessionsHelper
 			self.current_user = user
 
 			# get same username records count, and set user_id
-			sameNameUsersCount = User.where("name == '" + user.name + "'").count
-			if(sameNameUsersCount == 1)
-				user.update_attribute(:name_id, user.name)
-			else
-				user.update_attribute(:name_id, user.name + '-' + sameNameUsersCount.to_s)
-			end
+			user.update_attribute(:name_id, user.name)
 			
 			returnInfo = {"req" => "success", "err" => "", "info" => "欢迎注册ALG.SO，现在您可以发布算法来赚钱了！"}
 		else
