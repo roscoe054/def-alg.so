@@ -20,7 +20,7 @@ RSpec.describe SessionsController do
 	  	user = FactoryGirl.create(:user)
       post :create, {'email' => 'test@email.com', 'password' => 'test_password'}
       parsed_body = JSON.parse(response.body)
-			expect(parsed_body["req"]).to eql "success"
+			expect(parsed_body["req"]).to eql "success11"
     end
 
     it "shouldn't login with wrong_password" do
