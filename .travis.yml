@@ -2,6 +2,8 @@ language: ruby
 before_script:
   - mysql -e 'create database algso_test;'
   - mysql -e 'create database algso_development;'
+  - mysql UPDATE mysql.user SET Password='root' WHERE User='root';
+	- mysql FLUSH PRIVILEGES;
 rvm:
   - "2.0.0"
 gemfile: algso-rails/Gemfile
